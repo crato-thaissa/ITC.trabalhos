@@ -1,0 +1,24 @@
+Segundo trabalho de Laboratório (Letra C)
+
+#include <math.h>
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main()
+{
+	setlocale(LC_ALL, "portuguese");
+	float mont, temp;
+	temp = 12 * 3;
+	printf("Digite o valor da dívida do cartão de crédito: ");
+	scanf("%f", &mont);
+	while(temp > 0)
+	{
+		mont = mont * 1.075;
+		temp --;
+	}
+	printf("o valor da divida é: %.2f", mont);
+	getch();
+	return 0;	
+}

@@ -1,0 +1,29 @@
+Segundo trabalho de Laboratório (Letra A)
+
+#include <conio.h>
+#include <stdio.h>
+#include <locale.h>
+
+int main()
+{
+	int x, y;
+	setlocale(LC_ALL, "portuguese");
+	
+	while(y <= 0)
+	{
+		printf("Digite um número positivo: ");
+		scanf("%d", &y);
+	}
+	if(y%2 == 0)
+	{
+		y = y - 1;
+	}
+	printf("\nNumeros ímpares na forma decrescente: \n\n");
+	while(y >= 1)
+	{
+		printf("%d ", y);
+		y = y - 2;
+	}
+	getch();
+	return 0;
+}

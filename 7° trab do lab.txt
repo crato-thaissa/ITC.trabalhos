@@ -1,0 +1,75 @@
+Sétimo Trabalho
+
+#include <conio.h>
+#include <stdio.h>
+#include <locale.h>
+
+void preenche(float matriz [3][3])									
+{
+	int i, j;
+	for(i = 0; i < 3; i++)																					
+		for(j = 0; j < 3; j++)
+		{
+			printf("Matriz[%d][%d] = ", i + 1, j + 1);
+			scanf("%f", &matriz [i][j]);
+		}
+}
+void multiplica(float matrizA [3][3], float matrizB [3][3], float matrizC [3][3])		
+{
+	int i, j, x;
+	for(i = 0; i < 3; i++)
+	{
+		for(j = 0; j < 3; j++)
+		{
+			matrizC [i][j] = 0;
+			for(x = 0; x < 3; x++)
+				matrizC [i][j] = matrizC [i][j] + matrizA [i][x] * matrizB[x][j];
+		}
+	}
+}
+void dobra(float matrizB [3][3])
+{
+	int i, j;
+	for(i = 0; i < 3; i++)
+		for(j = 0; j < 3; j++)
+		{
+			matrizB [i][j] = matrizB [i][j] * 2;
+		}
+}
+void final(float matrizA [3][3], float matrizB [3][3], float matrizC [3][3])
+{
+	int i, j;
+	for(i = 0; i < 3; i++)
+		for(j = 0; j < 3; j++)
+		{
+			matrizC [i][j] = matrizC [i][j] + matrizB [i][j] - matrizA [i][j];
+		}
+}
+void mostra(float matrizC [3][3])
+{
+	int i, j;
+	for(i = 0; i < 3; i++)
+	{
+		for(j = 0; j < 3; j++)
+		{
+			printf("%.1f ", matrizC [i][j]);
+		}
+		printf("\n");
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "portuguese");
+	float matrizA [3][3], matrizB [3][3], matrizC [3][3];
+	printf("Digite os valores da primeira matriz : \n\n");
+	preenche(matrizA);
+	printf("\nDigite os valores da segunda matriz : \n\n");
+	preenche(matrizB);
+	multiplica(matrizA, matrizB, matrizC);
+	dobra(matrizB);	
+	final(matrizA, matrizB, matrizC);
+	printf("\n\nO resultado final será\n\n");
+	mostra(matrizC);
+	getch();					
+	return 0;
+}

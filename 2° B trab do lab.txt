@@ -1,0 +1,27 @@
+Segundo trabalho de Laboratório (Letra B)
+
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main()
+{
+	int	x = 100, N = 0;
+	setlocale(LC_ALL, "portuguese");
+	
+	while(N%2!=0 || N <= 100)
+	{
+		system("cls");
+		printf("Digite um número par positivo: ");
+		scanf("%d", &N);
+	}
+	printf("\nNúmeros pares na forma crescente até N: \n\n");
+	while(x < N)
+	{
+		x = x + 2;
+		printf("\n%d", x);
+	}
+	getch();
+	return 0;
+}

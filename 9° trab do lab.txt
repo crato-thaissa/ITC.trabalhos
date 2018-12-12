@@ -1,0 +1,264 @@
+Nono Trabalho
+
+#include <conio.h>
+#include <stdio.h>
+#include <locale.h>
+#include <string.h>
+#include <windows.h>
+
+struct endereco
+{
+	char cep[20];
+	int numero;	
+};
+struct aluno
+{
+	char nome[100];
+	char matricula[100];
+	float cra;
+	struct endereco end;
+};
+
+void cadastrar_aluno(struct aluno vet_alunos[], int indice)
+{
+printf("\n\nnome do aluno: ");
+fflush(stdin);
+gets(vet_alunos[indice].nome);
+printf("\nmatrícula do aluno: ");
+fflush(stdin);
+gets(vet_alunos[indice].matricula);
+printf("\nCRA do aluno: ");
+scanf("%f", &vet_alunos[indice].cra);
+printf("\ncep do aluno ");
+fflush(stdin);
+gets(vet_alunos[indice].end.cep);
+printf("\nNumero da residencia: ");
+scanf("%d", &vet_alunos[indice].end.numero);
+}
+
+void listar_aluno(struct aluno vet_alunos[], int n_alunos)
+{
+	int i;
+	for(i = 0; i < n_alunos; i++)
+	{
+		printf("\n\nNome: %s \nMatrícula: %s", vet_alunos[i].nome, vet_alunos[i].matricula);
+		printf("\nCRA: %f , \nCEP: %s", vet_alunos[i].cra, vet_alunos[i].end.cep);
+		printf("\nNúmero da residência: %d", vet_alunos[i].end.numero);   
+    }
+    getch();
+}
+
+void pesquisar_matricula(struct aluno vet_alunos[], int n_alunos)
+{
+	char mat_pesquisa[100];
+	int i, flag = 0;
+	printf("digite o número de matrícula: ");
+	fflush(stdin);
+	gets(mat_pesquisa);
+	for(i = 0; i < n_alunos; i++)
+	{
+		if(strcmp(mat_pesquisa, vet_alunos[i].matricula) == 0)
+		{
+			flag = 1;
+		    printf("\n\nNome do aluno: %s \nCRA: %f ",vet_alunos[i].nome, vet_alunos[i].cra);
+		    printf("\nNúmero da residêndia: %d \nCEP: %s ",vet_alunos[i].end.numero, vet_alunos[i].end.cep);
+		}
+		if(flag == 0)
+		{
+			printf("\nAluno não cadastrado.");
+		}
+		getch();    
+	}
+}
+
+int excluir_aluno(struct aluno vet_alunos[], int n_alunos)
+{
+	char pesquisa[100];
+	int i, flag = 0, op, indice_aluno;
+	printf("digite o númeoro de matrícula: ");
+	fflush(stdin);
+	gets(pesquisa);
+	for(i = 0; i < n_alunos; i++)
+	{
+		if(strcmp(pesquisa, vet_alunos[i].matricula) == 0)
+		{
+			flag = 1;
+		    printf("\n\nNome do aluno: %s \nCRA: %f ", vet_alunos[i].nome, vet_alunos[i].cra);
+		    printf("\nNúmero da residêndia: %d \nCEP: %s ", vet_alunos[i].end.numero, vet_alunos[i].end.cep);
+		    indice_aluno = i;
+		}
+	}
+	if(flag == 1)
+	{
+		printf("deseja mesmo excluir o aluno? Digite 1 - sim 2 - não: ");
+		scanf("%d", &op);
+		if(op == 1)
+		{
+			for(i = indice_aluno; i < n_alunos; i++)
+			{
+				vet_alunos[i] = vet_alunos[i+1];
+			}
+			return n_alunos - 1;
+		}
+	}
+	else
+	{
+		printf("Aluno não cadastrado.");
+		getch ();
+	}
+	return n_alunos;
+}
+
+void alterar_dados(struct aluno vet_alunos[], int n_alunos)
+{
+	char pesquisa[100];
+	int i, flag = 0, op, indice_aluno;
+	printf("digite o númeoro de matrícula: ");
+	fflush(stdin);
+	gets(pesquisa);
+	for(i = 0; i < n_alunos; i++)
+	{
+		if(strcmp(pesquisa, vet_alunos[i].matricula) == 0)
+		{
+			flag = 1;
+		    printf("\n\nNome do aluno: %s \nCRA: %f ", vet_alunos[i].nome, vet_alunos[i].cra);
+		    printf("\nNúmero da residêndia: %d \nCEP: %s ", vet_alunos[i].end.numero, vet_alunos[i].end.cep);
+		}
+	}
+	if(flag == 1)
+	{
+		printf("\n\nDigite os novos dados do aluno.");
+		printf("\n\nNome do aluno: ");
+		fflush(stdin);
+        gets(vet_alunos[i].nome);
+        printf("\nmatrícula do aluno: ");
+        fflush(stdin);
+        gets(vet_alunos[i].matricula);
+        printf("\nCRA do aluno: ");
+        scanf("%f", &vet_alunos[i].cra);
+        printf("\ncep do aluno ");
+        fflush(stdin);
+        gets(vet_alunos[i].end.cep);
+        printf("\nNumero da residencia: ");
+        scanf("%d", &vet_alunos[i].end.numero);
+    }
+	else if(flag == 0)
+	{
+		printf("\nAluno não cadastrado.");
+		getch();
+	}
+}
+
+void media(struct aluno vet_alunos[], int n_alunos)
+{
+    int soma = 0, mediacra, i = 0;
+    while( i <= n_alunos)
+    {
+    	soma = vet_alunos[i].cra + soma;
+    	i++;
+	}
+	mediacra = soma / n_alunos;
+	for(i = 0; i < n_alunos; i++)
+	{
+		if(vet_alunos[i].cra >= mediacra)
+		{
+		    printf("\nAluno com CRA maior que a média: %s ",vet_alunos[i].nome);
+		}
+	}
+	printf("\n\nA média dos CRA é: %d ",mediacra);
+	getch();
+	
+}
+
+void maior_cra(struct aluno vet_alunos[], int n_alunos)
+{
+	int maior = 0, indice, i;
+	for(i = 0; i < n_alunos; i++)
+	{
+		if(maior < vet_alunos[i].cra)
+		{
+			maior = vet_alunos[i].cra;
+			indice = i;
+		}
+	}
+	printf("\n\nNome do aluno: %s \nCRA: %f ",vet_alunos[indice].nome, vet_alunos[indice].cra);
+	printf("\nNúmero da residêndia: %d \nCEP: %s ",vet_alunos[indice].end.numero, vet_alunos[indice].end.cep);
+	printf("\nNúmero de matrícula: %s",vet_alunos[indice].matricula);
+	getch();
+}
+
+void ordem_alfabetica(struct aluno vet_alunos[], int n_alunos)
+{
+	struct aluno aux;
+
+	for(int i = 0; i < n_alunos; i++)
+		for(int j = i; j > 0; j--)
+		{
+			if(strcmp(vet_alunos[j].nome, vet_alunos[j-1].nome) < 0)
+			{
+				strcpy(aux.nome,vet_alunos[j].nome);
+				strcpy(vet_alunos[j].nome, vet_alunos[j-1].nome);
+				strcpy(vet_alunos[j-1].nome, aux.nome);
+			}
+		}
+	printf("Alunos em ordem alfabética: \n");
+	for(int i = 0; i < n_alunos; i++)
+		printf("%s\n", vet_alunos[i].nome);
+	getch();	
+}
+
+int main()
+{
+	setlocale(LC_ALL, "portuguese");
+	struct aluno vet_alunos[200];
+	int num_alunos = 0, opcao;
+	do
+	{
+		system("cls");
+		printf("escolha uma opção: \n\n 1 - cadastra aluno.\n 2 - pesquisar por matrícula.\n 3 - excluir aluno.");
+		printf("\n 4 - listar aluno.\n 5 - alterar dados do aluno.\n 6 - média dos cra.\n 7 - maior CRA.\n 9 - sair do programa.\n\nDigite: ");
+		scanf("%d", &opcao);
+		switch(opcao)
+		{
+			case 1:
+				system("cls");
+				cadastrar_aluno(vet_alunos, num_alunos);
+				num_alunos++;
+				break;
+			case 2:
+			    system("cls");
+			    pesquisar_matricula(vet_alunos, num_alunos);
+			    break;
+			case 3:
+			    system("cls");
+				excluir_aluno(vet_alunos, num_alunos);
+				break;    
+			case 4: 
+				system("cls");
+				printf("\nLista de alunos cadastrados:\n\n");
+				listar_aluno(vet_alunos, num_alunos);
+				break;
+			case 5:
+				system("cls");
+				alterar_dados(vet_alunos, num_alunos);
+				break;
+			case 6:
+				system("cls");
+				media(vet_alunos, num_alunos);
+				break;
+			case 7:
+				system("cls");
+				maior_cra(vet_alunos, num_alunos);
+				break;
+			default:	
+			    if(opcao != 8)
+			    {
+				 printf("opção inválida");
+				 getch ();
+			    }	
+		}
+	}while(opcao != 8);
+	return 0;
+	getch ();
+	
+}

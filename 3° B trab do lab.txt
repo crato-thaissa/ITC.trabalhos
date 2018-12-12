@@ -1,0 +1,36 @@
+Terceito Trabalho (B)
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+ 
+void tabela(int fa);
+int main()
+{
+    int a, b = 1, c;
+    setlocale(LC_ALL, "portuguese");
+    printf("Digite o número de linhas a serem apresentadas: ");
+    scanf("%d", &a);
+    while(a > 0)
+    {
+        tabela(c);
+		printf("\n");
+        a--;
+		c++;
+    }
+    getch();
+    return 0;
+}
+
+void tabela(int fa)
+{
+    int fb, fc = 0, fd;
+    fb = fa;
+	while (fb > 0)
+	{
+        fd = fa * (fc + 1);
+        printf("%d ", fd);                                              
+        fc++;
+        fb--;                                                          
+    }
+}

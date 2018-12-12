@@ -1,0 +1,63 @@
+Oitavo Trabalho de Laboratório
+
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+
+struct endereco
+{
+	char rua[256];
+	float cep;
+	float numero;
+	char bairro[256];
+};
+struct cadastro
+{
+	char nome[256];
+	float telefone;
+	int idade;
+	struct endereco ad;
+};
+void cadastra(struct cadastro vt_pessoa[], int indice)
+{
+	printf("Digite o nome da pessoa: ");
+	fflush(stdin);
+	gets(vt_pessoa[indice].nome);
+	printf("\nDigite o numero do telefone: ");
+	scanf("%f", &vt_pessoa[indice].telefone);
+	printf("\nDigite a idade da pessoa: ");
+	scanf("%d", &vt_pessoa[indice].idade);
+	printf("\n");
+	printf("Cadastramento do endereco: ");
+	printf("\n");
+	printf("\nDigite o nome da rua que a pessoa reside: ");
+	fflush(stdin);
+	gets(vt_pessoa[indice].ad.rua);
+	printf("\nDigite o numero do cep: ");
+	scanf("%f", &vt_pessoa[indice].ad.cep);
+	printf("\nDigite o numero da casa: ");
+	scanf("%f", &vt_pessoa[indice].ad.numero);
+	printf("\nDigite o nome do bairro: ");
+	fflush(stdin);
+	gets(vt_pessoa[indice].ad.bairro);
+}
+void mostra(struct cadastro vt_pessoa[], int numero_pessoa)
+{
+	int i;
+	for (i = 0; i <= numero_pessoa; i++)
+	{
+		printf("\nNome da pessoa: %s \nTelefone: %.2f", vt_pessoa[i].nome, vt_pessoa[i].telefone);
+		printf("\nIdade da pessoa: %.2d \nNome da rua: %s \nCep: %2.f", vt_pessoa[i].idade, vt_pessoa[i].ad.rua, vt_pessoa[i].ad.cep);
+		printf("\nNumero da casa: %.2f \nNome do bairro: %s", vt_pessoa[i].ad.numero, vt_pessoa[i].ad.bairro);
+	}
+	getch();
+}
+int main()
+{
+	struct cadastro vt_pessoas[200];
+	int numero_pessoa = 0;
+	cadastra (vt_pessoas, numero_pessoa);
+	mostra (vt_pessoas, numero_pessoa);
+	getch();
+	return 0;
+}

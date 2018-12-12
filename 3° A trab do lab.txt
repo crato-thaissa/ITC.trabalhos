@@ -1,0 +1,31 @@
+Terceiro Trabalho (A)
+
+#include <stdio.h>                               
+#include <conio.h>
+#include <locale.h>
+ 
+double fatorial(double fa)                       
+{
+    int fb, fc = 1, fccont = 1;                    
+    for (fb = 1; fa > fb; fb++)
+    {
+        fc = fc * (fccont + 1);
+        fccont++;
+    }
+    return fc;                                     
+}
+int main()
+{
+    double den = 0, num = 63, a = 20, b = 0;        
+    setlocale(LC_ALL, "portuguese");
+    while(a >= 0)                                  
+    {
+        b += num / fatorial(den);                   
+        num -= 2;                                   
+        den++;                                      
+        a--;                                        
+    }
+    printf("O resultado da soma é %.4lf", b);     
+    getch();                                        
+    return 0;                                      
+}

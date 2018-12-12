@@ -1,0 +1,37 @@
+Sexto Trabalho
+
+#include <conio.h>
+#include <stdio.h>
+#include <locale.h>
+
+void trocar(char stg[], int x)
+{
+	int vet[x], nvet = 0, n;
+	for(n = 0; stg[n] != '\0'; n++)
+	{
+		if(stg[n] == ' ')
+		{
+			stg[n] = '_';
+			vet[nvet] = n + 1;
+			nvet++;
+		}
+	}
+	printf("\n\nString criada: %s", stg);
+	printf("\n\nPosições em que continham espaços: ");
+	for(n = 0; n != nvet; n++)
+	{
+		printf("%d ", vet[n]);
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "portuguese");
+	const int x = 200;
+	char stg[x];
+	printf("Escreva uma string: ");
+	fflush(stdin);
+	gets(stg);
+	trocar(stg, x);
+	getch();
+	return 0;
+}

@@ -1,0 +1,59 @@
+Primeiro trabalho de Laboratório 
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+
+int main ()
+{
+	setlocale(LC_ALL, "portuguese");
+	int peso, carga, cod;
+	float x, y, z, imp; 
+	printf ("Digite o peso em toneladas: ");
+	scanf ("%d", &peso);
+	printf ("Digite o código do estado: ");
+	scanf ("%d", &cod);
+	printf ("Digite o código da carga: ");
+	scanf ("%d", &carga);
+	x = peso * 1000;
+	if (carga >= 31 && carga <=40)
+	{
+		y = x * 340;			
+	}
+	else if (carga >= 21 && carga <= 30)
+	{
+		y = x * 250;
+	}
+	else if (carga >= 10 && carga <= 100)
+	{
+		y = x * 100;
+	}
+	if (cod == 1)
+	{
+		z = y * 1.35;
+	}
+	else if (cod == 2)
+	{
+		z = y * 1.25;
+	}
+	else if (cod == 3)
+	{
+		z = y * 1.15;
+	}
+	else if (cod == 4)
+	{
+		z = y * 1.05;
+	}
+	else if (cod == 1)
+	{
+		z = y * 1;
+	}
+	else if (cod >= 6)
+	{
+		printf ("código inválido");
+	}
+	printf (" \npeso da carga em kg: %.2f\npreço: %.2f", x, y);
+	printf (" \no valor total transportado: %.2f\nvalor do imposto: %2f", z, imp);
+	getch();
+	return 0;
+}
